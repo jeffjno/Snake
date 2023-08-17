@@ -1,9 +1,15 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SnakeGameManager : MonoBehaviour
 {
+    public GameObject gameOverPanel;
+    public int score = 0;
+    public TextMeshProUGUI scoreTextMeshPro; // Você precisa arrastar e soltar o Texto da UI Text Mesh PRO no Inspector do Unity para associar.
+
     public GameObject blockPrefab;
     public Color snakeColor = new Color(1f, 1f, 1f, 0.8f); // 80% de opacidade
     public Color appleColor = new Color(1f, 0f, 0f, 0.8f); // Vermelho com 80% de opacidade
@@ -52,6 +58,15 @@ public class SnakeGameManager : MonoBehaviour
     void Update()
     {
         HandleInput();
+
+        if (snake.segments[0] == applePosition)
+        {
+            score++;
+            scoreTextMeshPro.text = "Score: " + score;
+            snake.Grow(); // Faz a cobrinha crescer.
+            PlaceApple(); // Reposiciona a maçã.
+                          // E qualquer outra lógica que você queira implementar quando a cobrinha come uma maçã.
+        }
     }
 
     void HandleInput()
@@ -127,9 +142,15 @@ public class SnakeGameManager : MonoBehaviour
         boardBlocks[applePosition].SetActive(true);
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Recarrega a cena atual
+    }
+
     void GameOver()
     {
         StopAllCoroutines();
+        gameOverPanel.SetActive(true);
         // TODO: Implemente a lógica do GameOver aqui. Você pode mostrar uma mensagem, reiniciar o jogo, etc.
     }
 }
