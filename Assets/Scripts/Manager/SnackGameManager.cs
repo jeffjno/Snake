@@ -149,8 +149,9 @@ public class SnakeGameManager : MonoBehaviour
 
     void GameOver()
     {
-        StopAllCoroutines();
         gameOverPanel.SetActive(true);
+        
+        StopAllCoroutines();
         // TODO: Implemente a lógica do GameOver aqui. Você pode mostrar uma mensagem, reiniciar o jogo, etc.
     }
 }
