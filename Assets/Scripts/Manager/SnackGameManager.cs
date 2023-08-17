@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class SnakeGameManager : MonoBehaviour
 {
     public GameObject blockPrefab;
+    public Color snakeColor = new Color(1f, 1f, 1f, 0.8f); // 80% de opacidade
+    public Color appleColor = new Color(1f, 0f, 0f, 0.8f); // Vermelho com 80% de opacidade
     private Vector2[,] positions;
     private int[,] gameMatrix = new int[10, 20];
 
@@ -101,15 +103,19 @@ public class SnakeGameManager : MonoBehaviour
         foreach (var block in boardBlocks.Values)
         {
             block.SetActive(false);
+            block.GetComponent<SpriteRenderer>().color = snakeColor; // definindo a cor padrão para todos os blocos
         }
 
         foreach (Vector2Int pos in snake.segments)
         {
             boardBlocks[pos].SetActive(true);
+            boardBlocks[pos].GetComponent<SpriteRenderer>().color = snakeColor;
         }
 
         boardBlocks[applePosition].SetActive(true);
+        boardBlocks[applePosition].GetComponent<SpriteRenderer>().color = appleColor;
     }
+
 
     void PlaceApple()
     {

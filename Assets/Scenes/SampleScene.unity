@@ -245,6 +245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 3508180845444524653, guid: e09eef804befdcd4aa458018cd53d3b6, type: 3}
+  snakeColor: {r: 1, g: 1, b: 1, a: 0.8}
+  appleColor: {r: 0.68412626, g: 0.9811321, b: 0.61552155, a: 0.8}
 --- !u!4 &847980386
 Transform:
   m_ObjectHideFlags: 0
